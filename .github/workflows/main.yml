@@ -1,0 +1,32 @@
+name: Node.js CI with SonarQube and Docker
+on:
+  push:
+    branches:
+      - main   # You can change this to the branch you use
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4.2.2
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16'  # You can change the version as needed
+    - name: Install dependencies
+      run: |
+        npm install
+    - name: Run tests
+      run: |
+        npm test
+    - name: SonarQube Scan
+      uses: SonarSource/sonarcloud-github-action@v1.0
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}  # Set up a SonarQube token in GitHub secrets
+    - name: Build Docker image
+      run: |
+        docker build -t my-app .
+    - name: Push Docker image to DockerHub
+      run: |
+        docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+        docker push my-app
