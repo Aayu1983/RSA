@@ -24,9 +24,9 @@ jobs:
     #   env:
     #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}  # Set up a SonarQube token in GitHub secrets
     # - name: Build Docker image
-      run: |
-        docker build -t my-app .
-    - name: Push Docker image to DockerHub
-      run: |
-        docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-        docker push my-app
+    #   run: |
+    #     docker build -t my-app .
+    # - name: Push Docker image to DockerHub
+    #   run: |
+    #     docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+    #     docker push my-app
