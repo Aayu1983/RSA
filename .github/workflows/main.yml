@@ -27,4 +27,6 @@ jobs:
     - name: Push Docker image to DockerHub
       run: |
         docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-        docker push my-app
+        docker tag my-app ${{ secrets.DOCKER_USERNAME }}/my-app:latest
+        docker push ${{ secrets.DOCKER_USERNAME }}/my-app:latest
+
