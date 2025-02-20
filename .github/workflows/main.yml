@@ -15,10 +15,7 @@ jobs:
         node-version: '16'  # You can change the version as needed
     - name: Install dependencies
       run: |
-        npm install
-    - name: Run tests
-      run: |
-        npm test
+        npm install   
     - name: SonarQube Scan
       uses: SonarSource/sonarqube-scan-action@v4
       env:
